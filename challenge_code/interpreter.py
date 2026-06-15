@@ -22,37 +22,46 @@
 
 def math_calculations():
     while(True):
+        user_input = input("Enter the expression in X y Z format: ")
+        user_input_split = user_input.split(" ")
+        if(len(user_input_split) != 3):
+            print("Error: Invalid Format")
+            continue
         try:
-            user_input = input("Enter the expression in X y Z format: ")
-            user_input_split = user_input.split(" ")
-            if(len(user_input_split != 3)):
-                print("Error: Invalid Format")
-                continue
-            
-            x = user_input_split[0]
-            z = user_input_split[2]
-            if(x+z != int(x)+int(z)):
-                print("Error: Invalid Format")
-                continue
-            else:
-                y = user_input_split[1]
-                if(y != "+" or y!= "-" or y!= "*" or y!= "/" ):
-                    print("Error: Invalid Format")
-                    continue
-                elif(y == "/" and z == 0):
-                    print("Error: Divide By 0 Error ")
-                    continue
-                else:
-                    []
+            x = int(user_input_split[0])
+            z = int(user_input_split[2])
         except:
-            result = eval(x,y,z)
+            print("Error: Invalid Format")
+            continue
+        valid = {"+","-","*","/"}
+        y = user_input_split[1]
+        if y not in valid:
+            print("Error: Invalid Format")
+            continue
+        if (y == "/" and z == 0):
+            print("Error: Divide By 0 Error ")
+            continue
+        result = [x, y, z] 
+        break
     return result
 
 def main():
-    expression = math_calculations()
+    while True:
+        user_input_split = math_calculations()
+        if(user_input_split[1] == "+"):
+            result = user_input_split[0] + user_input_split[2]
+        elif(user_input_split[1] == "-"):
+            result = user_input_split[0] - user_input_split[2]
+        elif(user_input_split[1] == "*"):
+            result = user_input_split[0] * user_input_split[2]
+        else:
+            result = user_input_split[0] / user_input_split[2]
+        print(result)
+        
+        play_again = input("Would you like to enter a new expression(y/n):" )
+        if(play_again != "y"):
+            break
 
 main()
-
-
 
             
