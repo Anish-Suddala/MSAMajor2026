@@ -16,7 +16,7 @@ def num_of_questions():
             user_input = input("Enter number of questions to ask: ")
             while user_input not in valid_range:
                 print("ERROR: Please enter an integer value between 3 and 10! ")
-                user_input = input("Enter number of questions to ask: ")
+                user_input = input("Enter number of questions to ask(3-10): ")
             return user_input
 
 
@@ -53,10 +53,13 @@ def main():
             else:
                  print("WRONG")
                  attempts+=1
-        print(f"The correct answer is {int{x}+int{y}}. ")
+            x = int(x)
+            y = int(y)
+        print(f"The correct answer is {x+y}. ")
         
     print(f"You got {score} out of {num_questions} correct: {100*(score/int(num_questions)):.2f}%")
         
             
 
+main()
 main()
