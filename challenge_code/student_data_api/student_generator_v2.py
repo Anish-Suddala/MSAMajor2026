@@ -1,5 +1,10 @@
 from Student import Student
-def main():
+'''
+Function to return a list of student objects
+Input: none
+Output: list of student objects
+'''
+def load_students() -> list[Student]:
     data_file = open("students.csv","r")
     students_list = []
     line_number = 0
@@ -26,16 +31,47 @@ def main():
             continue
         s_Level = student.get_class_level()
         students_list.append(student)
-    data_file.close()
-    for student in students_list:
-        print(f"{student.get_first_name()} {student.get_last_name()} ")
-        print(f"Class Level: {s_Level}, Major: {student.get_major()}")
-        print(f"GPA: {student.get_gpa()}, ID: {student.get_ID()}")
+    return students_list
+'''
+Function to convert student objects to student dictionaries
+Input: list of student objects
+Output: list of student dictionaries
+'''
+'''
+Function to get student dictionaries
+Input: None
+Output: a list of student dictionaries
+'''
+def student_to_dictionary(list_of_students: list[Student])->list[dict]:
+    #create an empty list to store the dcitionaries
+    student_dictionary_list = []
+    #loop through the list and write each student's data to a dictionary
+    for student in list_of_students:
+        #create an empty dictionary
+        student_dictionary = {}
+        #make entries into the dictionary using the student properties
+        #firstname, last_name, major, gpa, class, id
+        student_dictionary['first_name'] = student.get_first_name()
+        student_dictionary['last_name'] = student.get_last_name()
+        student_dictionary['major'] = student.get_major()
+        student_dictionary['gpa'] = student.get_gpa()
+        student_dictionary['class'] = student.get_class_level()
+        student_dictionary['id'] = student.get_ID()
+
+
+        #append the dictionary to the list of dictionaries
+        student_dictionary_list.append(student_dictionary)
+    #return the list of dicitonaries
+    return student_dictionary_list
 
 
 
 
+def get_student_dictionaries():
+    #get a list of students
+    students_list = load_students()
 
+    #get a list of student dictionaries
+    student_dictionaries = student_to_dictionary(students_list)
 
-
-main()
+    return student_dictionaries
